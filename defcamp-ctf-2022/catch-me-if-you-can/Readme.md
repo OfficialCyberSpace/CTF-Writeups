@@ -70,7 +70,15 @@ The AndroidManifest.xml file in this directory has the following contents:
 
 </manifest>
 ```
-Hey, hey! Look what we have here! Looks like a flag!
+Hey, hey! Look what we have here! 
+`
+~ here you can create your own puzzles
+  ~ secrets can be discovered along the way
+  ~ here you can find the first gem: idopuzzlesforpleasure
+`
+Looks like a flag!
+
+*Flag*: `idopuzzlesforpleasure`
 
 **What does this tell us?**
 
