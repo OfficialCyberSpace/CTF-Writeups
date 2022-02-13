@@ -8,6 +8,7 @@ We need your technical expertise to analyze this Android project. We tried to co
 **Walkthrough/Solution:**
 
 **Part 1**:
+
 Challenge: What is the first code that you should deliver to us? (Points: 50)
 
 When we look at an Android Application, the most important file is the AndoridManifest.xml file. It has essential information about the app. So, let's take a look at that file.
