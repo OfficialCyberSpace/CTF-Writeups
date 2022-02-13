@@ -9,7 +9,7 @@ We need your technical expertise to analyze this Android project. We tried to co
 
 **Part 1**:
 
-Challenge: What is the first code that you should deliver to us?
+`Challenge: What is the first code that you should deliver to us?`
 
 When we look at an Android Application, the most important file is the AndoridManifest.xml file. It has essential information about the app. So, let's take a look at that file.
 In our case, the file to look out for is under `app/src/main`.
@@ -88,7 +88,7 @@ ________________________________________________________________________________
 
 **Part 2:**
 
-Challenge: Some file is triggered when the user is launching the application. Can you provide its name?
+`Challenge: Some file is triggered when the user is launching the application. Can you provide its name?`
 
 From the question, we can infer that there is a file being triggered within the application. This means that there must be a file within the app that stores such information. Additionally, there is a standard directory in Android apps that has information about the functionality of the app called `activity`. After a bit of searching, we see that there is a directory called `app/src/main/java/com/jigdrawdraw/activity/` and there is an interesting file called `ExternalStorage.java`. 
 These are the contents of that file:
@@ -175,6 +175,8 @@ Looks like it is an encrypted string. Let's try to decode it with the help of ou
 ![image](https://user-images.githubusercontent.com/95949180/153769565-1f2169ee-9641-417a-8b64-2c10ceec9d90.png)
 This means that the file being mentioned is `wewillstealallmoneyintheworld.txt`. Solved!
 
+*Flag*:
+
 **What does this tell us?**
 
 This challenge tells us that the activity directory of an Android app holds crucial information about the functionality of the file. Also, finding encrypted strings should make us more alert and should prompt us to find a way to decode it.
@@ -183,7 +185,7 @@ ________________________________________________________________________________
 
 **Part 3:**
 
-Challenge: Something is triggered on the device screen when launching the application, you know like buttons, logos, and stuff like that. There are suspicions that hidden applications may be found.
+`Challenge: Something is triggered on the device screen when launching the application, you know like buttons, logos, and stuff like that. There are suspicions that hidden applications may be found.`
 
 The main directory for logos, buttons, etc. is the `res` (resources) directory.
 In this app, the `res` directory is located at `app/src/main/res`. Let's examine the directory. Hmm, `drawable-xxhdpi` looks interesting. There is also a file called `model_signature.png`. That doesn't look standard. Let's take a closer look.
@@ -213,3 +215,65 @@ Let's try searching for the malware with our full checksum.
 A malware indeed! Oh, there is the name we are looking for! `Covid_CovidMap.apk`
 
 *Flag:* `Covid_CovidMap.apk`
+
+**
+
+_____________________________________________________________________________________________________________________________________________________________________________
+
+**Part 4:**
+
+`Challenge: Something is wrong with the SharedPreferences file. We didn't manage to understand the string value. Please share it with us.`
+
+So the challenge needs a string value with the correct interpretation. Hmm. `SharedPreferences` seems familiar. Oh yea, we saw it earlier when we were doing the first part! It is in the same directory! `app/src/main/java/com/jigdraw/draw/activity`
+There it is.
+```
+package com.jigdraw.draw.activity;
+
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public class SharedPref extends AppCompatActivity {
+
+    public static final String MyPREFERENCES ;
+    public int totalCount=0;
+    SharedPreferences sharedpreferences;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_shared_pref);
+        setTitle("1337");
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.);
+        String n = "|][]¥°|_|7#][\\]X'/[](_):-:∂|/€|†\n";
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        String decrypted = "";
+```
+Woah, there is an encrypted string. We can tell by looking at this line `String n = "|][]¥°|_|7#][\\]X'/[](_):-:∂|/€|†\n";`
+Let's try decrypting it. 
+Not sure what this cipher is? No problem. Just use https://www.dcode.fr/cipher-identifier
+![image](https://user-images.githubusercontent.com/95949180/153771251-b31580bf-a20d-47c8-8e13-f7d5891e7252.png)
+Looks like it is `Leet Speak 1337` cipher. Let's head to that page to decode it.
+![image](https://user-images.githubusercontent.com/95949180/153771313-106ca194-05d5-4e51-bd05-86241cf97324.png)
+Hmm. This does not look fully decoded. Let's try decoding this output we recieved.
+![image](https://user-images.githubusercontent.com/95949180/153771344-9027d40c-c7ec-4e0e-8678-a68fd2911bbc.png)
+I think we can see what the message should say. The correct phrase would be `DOYOUTHINKYOUHAVEIT`.
+Wow, looks like a flag!
+Let's submit it!
+
+*Flag*: `DOYOUTHINKYOUHAVEIT`
+
+**What does this tell us?**
+
+This challenge shows how an encrypted string can be hidden within an app to send a secret message to someone.
