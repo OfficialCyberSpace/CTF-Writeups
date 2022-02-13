@@ -72,7 +72,7 @@ The AndroidManifest.xml file in this directory has the following contents:
 ```
 Hey, hey! Look what we have here! Looks like a flag!
 
-*What does this tell us?*
+**What does this tell us?**
 
 Always start by looking at the AndroidManifest.xml file whenever you are dealing with Android App Forensics.
 
