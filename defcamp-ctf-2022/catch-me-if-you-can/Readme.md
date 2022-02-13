@@ -280,6 +280,8 @@ Let's submit it!
 
 This challenge shows how an encrypted string can be hidden within an app to send a secret message to someone.
 
+
+
 **Last Words:**
 
 This challenge relates to a real-life application problem of investigating an Android application. Sometimes, there are hidden messages being sent (suspicious activity), and sometimes there can be malicious content in an app. We should always be alert and constantly should look out for malware. Thank you so much Volf for this amazing, fun, and educational challenge. I absolutely loved the initiative and idea.
