@@ -178,3 +178,34 @@ This means that the file being mentioned is `wewillstealallmoneyintheworld.txt`.
 **What does this tell us?**
 
 This challenge tells us that the activity directory of an Android app holds crucial information about the functionality of the file. Also, finding encrypted strings should make us more alert and should prompt us to find a way to decode it.
+
+_____________________________________________________________________________________________________________________________________________________________________________
+
+**Part 3:**
+
+Challenge: Something is triggered on the device screen when launching the application, you know like buttons, logos, and stuff like that. There are suspicions that hidden applications may be found.
+
+The main directory for logos, buttons, etc. is the `res` (resources) directory.
+In this app, the `res` directory is located at `app/src/main/res`. Let's examine the directory. Hmm, `drawable-xxhdpi` looks interesting. There is also a file called `model_signature.png`. That doesn't look standard. Let's take a closer look.
+![model_signature](https://user-images.githubusercontent.com/95949180/153770471-0db153c3-794f-4fe0-b4ad-d102db8b3384.png)
+Hmm, a QR Code. Let's read the QR Code using a scanner.
+Interesting, it gives us this link: https://qrty.mobi/preview/vc5lGV
+![image](https://user-images.githubusercontent.com/95949180/153770556-9d2066a3-8ef5-4878-a6a4-b7d6b42dc3d9.png)
+What is this weird code? Ohh, it looks like a SHA1 checksum. But wait, that is not a full checksum, it's only part of it.
+Looking back at the challenge description, we can infer that this partial checksum relates to some kind of malware or malicious application. Looks like some OSINT is required here.
+After some searching, we come across a list of SHA1 Checksums of Android Malware. 
+https://github.com/mstfknn/android-malware-sample-library/tree/master/Covid19%20Samples
+![image](https://user-images.githubusercontent.com/95949180/153770725-ee9d76ab-8045-4584-8d9a-82d81d601188.png)
+Let's see if we can find the full checksum of our partial one.
+![image](https://user-images.githubusercontent.com/95949180/153770742-1cd98d09-9502-47a6-bff3-daf1117a8c0f.png)
+Hey, look! There it is!
+![image](https://user-images.githubusercontent.com/95949180/153770764-f992237b-908d-42d9-b397-8d8c0b14c2f2.png)
+Full Checksum: `2B43AF46398ECE7B9E1E41BB7C2E2FF3EC227EDB38283BEA7622115BB76A7823`
+Going back to the link we found from our QR, we see the word `free`. 
+![image](https://user-images.githubusercontent.com/95949180/153770794-8cc21dd6-abef-417f-a386-34f43f585264.png)
+Hmm, what can this refer to? Oh yea, VirusTotal. VirusTotal is a free malware detection/searching service. A lot of common malware are uploaded there by the community.
+Let's try searching for the malware with our full checksum.
+![image](https://user-images.githubusercontent.com/95949180/153770855-5b0d74dd-3a07-4d8f-8ee8-fe86dde8bf79.png)
+A malware indeed! Oh, there is the name we are looking for! `Covid_CovidMap.apk`
+
+*Flag:* `Covid_CovidMap.apk`
