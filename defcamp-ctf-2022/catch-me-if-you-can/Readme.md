@@ -187,10 +187,14 @@ Challenge: Something is triggered on the device screen when launching the applic
 
 The main directory for logos, buttons, etc. is the `res` (resources) directory.
 In this app, the `res` directory is located at `app/src/main/res`. Let's examine the directory. Hmm, `drawable-xxhdpi` looks interesting. There is also a file called `model_signature.png`. That doesn't look standard. Let's take a closer look.
+
 ![model_signature](https://user-images.githubusercontent.com/95949180/153770471-0db153c3-794f-4fe0-b4ad-d102db8b3384.png)
+
 Hmm, a QR Code. Let's read the QR Code using a scanner.
 Interesting, it gives us this link: https://qrty.mobi/preview/vc5lGV
+
 ![image](https://user-images.githubusercontent.com/95949180/153770556-9d2066a3-8ef5-4878-a6a4-b7d6b42dc3d9.png)
+
 What is this weird code? Ohh, it looks like a SHA1 checksum. But wait, that is not a full checksum, it's only part of it.
 Looking back at the challenge description, we can infer that this partial checksum relates to some kind of malware or malicious application. Looks like some OSINT is required here.
 After some searching, we come across a list of SHA1 Checksums of Android Malware. 
