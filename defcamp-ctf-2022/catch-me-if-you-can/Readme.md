@@ -84,6 +84,8 @@ Looks like a flag!
 
 Always start by looking at the AndroidManifest.xml file whenever you are dealing with Android App Forensics.
 
+
+
 **Part 2:**
 
 Challenge: Some file is triggered when the user is launching the application. Can you provide its name?
