@@ -71,11 +71,11 @@ The AndroidManifest.xml file in this directory has the following contents:
 </manifest>
 ```
 Hey, hey! Look what we have here! 
-`
+```
 ~ here you can create your own puzzles
   ~ secrets can be discovered along the way
   ~ here you can find the first gem: idopuzzlesforpleasure
-`
+```
 Looks like a flag!
 
 *Flag*: `idopuzzlesforpleasure`
@@ -175,7 +175,7 @@ Looks like it is an encrypted string. Let's try to decode it with the help of ou
 ![image](https://user-images.githubusercontent.com/95949180/153769565-1f2169ee-9641-417a-8b64-2c10ceec9d90.png)
 This means that the file being mentioned is `wewillstealallmoneyintheworld.txt`. Solved!
 
-*Flag*:
+*Flag*: `wewillstealallmoneyintheworld.txt`
 
 **What does this tell us?**
 
@@ -216,7 +216,9 @@ A malware indeed! Oh, there is the name we are looking for! `Covid_CovidMap.apk`
 
 *Flag:* `Covid_CovidMap.apk`
 
-**
+**What does this tell us?**
+
+We should always be on the lookout for malicious files and application. Sometimes, extra investigation is needed, but it is essential that we find the malware and remove it.
 
 _____________________________________________________________________________________________________________________________________________________________________________
 
@@ -277,3 +279,7 @@ Let's submit it!
 **What does this tell us?**
 
 This challenge shows how an encrypted string can be hidden within an app to send a secret message to someone.
+
+**Last Words:**
+
+This challenge relates to a real-life application problem of investigating an Android application. Sometimes, there are hidden messages being sent (suspicious activity), and sometimes there can be malicious content in an app. We should always be alert and constantly should look out for malware. Thank you so much Volf for this amazing, fun, and educational challenge. I absolutely loved the initiative and idea.
