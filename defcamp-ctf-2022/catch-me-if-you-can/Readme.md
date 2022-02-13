@@ -84,7 +84,7 @@ Looks like a flag!
 
 Always start by looking at the AndroidManifest.xml file whenever you are dealing with Android App Forensics.
 
-
+_____________________________________________________________________________________________________________________________________________________________________________
 
 **Part 2:**
 
