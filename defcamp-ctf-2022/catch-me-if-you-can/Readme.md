@@ -160,7 +160,8 @@ public class ExternalStorage extends AppCompatActivity {
 
 }
 ```
-Woah, the line `File file = new File (Environment.getExternalStorageDirectory(), "H4sIAAAAAAAA/ytPLc/MySkuSU3MSczJyc3PS63MzCvJSC3PL8pJAQBLJvfnHQAAAA==.txt");` seems interesting. Seems like it is an encrypted string. Let's try to decode it! Let's go to our old friend, CyberChef.
+Woah, `File file = new File (Environment.getExternalStorageDirectory(), "H4sIAAAAAAAA/ytPLc/MySkuSU3MSczJyc3PS63MzCvJSC3PL8pJAQBLJvfnHQAAAA==.txt");` seems interesting. 
+Looks like it is an encrypted string. Let's try to decode it with the help of our old friend, CyberChef.
 ![image](https://user-images.githubusercontent.com/95949180/153769565-1f2169ee-9641-417a-8b64-2c10ceec9d90.png)
 This means that the file being mentioned is `wewillstealallmoneyintheworld.txt`. Solved!
 
