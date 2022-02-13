@@ -1,2 +1,2 @@
 # CyberSpace-CTF-Writeups
-CyberSpace Team CTF Writeups
+CyberSpace CTF Team Writeups
