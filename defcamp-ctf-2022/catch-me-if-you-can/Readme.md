@@ -280,7 +280,7 @@ Let's submit it!
 
 This challenge shows how an encrypted string can be hidden within an app to send a secret message to someone.
 
-
+_____________________________________________________________________________________________________________________________________________________________________________
 
 **Last Words:**
 
