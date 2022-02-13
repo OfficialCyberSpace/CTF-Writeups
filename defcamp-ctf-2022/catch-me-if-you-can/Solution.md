@@ -269,11 +269,17 @@ public class SharedPref extends AppCompatActivity {
 Woah, there is an encrypted string. We can tell by looking at this line `String n = "|][]¥°|_|7#][\\]X'/[](_):-:∂|/€|†\n";`
 Let's try decrypting it. 
 Not sure what this cipher is? No problem. Just use https://www.dcode.fr/cipher-identifier
+
 ![image](https://user-images.githubusercontent.com/95949180/153771251-b31580bf-a20d-47c8-8e13-f7d5891e7252.png)
+
 Looks like it is `Leet Speak 1337` cipher. Let's head to that page to decode it.
+
 ![image](https://user-images.githubusercontent.com/95949180/153771313-106ca194-05d5-4e51-bd05-86241cf97324.png)
+
 Hmm. This does not look fully decoded. Let's try decoding this output we recieved.
+
 ![image](https://user-images.githubusercontent.com/95949180/153771344-9027d40c-c7ec-4e0e-8678-a68fd2911bbc.png)
+
 I think we can see what the message should say. The correct phrase would be `DOYOUTHINKYOUHAVEIT`.
 Wow, looks like a flag!
 Let's submit it!
