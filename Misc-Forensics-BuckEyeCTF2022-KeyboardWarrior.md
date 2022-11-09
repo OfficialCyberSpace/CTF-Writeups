@@ -6,7 +6,7 @@ The challenge pcap [file](./keyboardwarrior.pcap) contains bluetooth usb transmi
 > Create a keymap of each keystroke data from the reference (look page 55+):  https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf
 
 
-One line bash solution: 
+One line bash solution with the help of the python code cited below the image : 
 ```sh
 tshark -r keyboardwarrior.pcap -Y btatt.opcode==0x001b -T json -V > hci.json && python solvepcap.py
 ```
