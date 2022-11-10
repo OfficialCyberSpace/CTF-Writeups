@@ -8,7 +8,7 @@ The challenge pcap [file](./keyboardwarrior.pcap) contains bluetooth usb transmi
 
 One line bash solution with the help of the python code cited below the image **solvepcap.py**: 
 ```sh
-tshark -r keyboardwarrior.pcap -Y btatt.opcode==0x001b -T json -V > hci.json && python solvepcap.py
+tshark -r keyboardwarrior.pcap -Y btatt.opcode==0x001b -T json -V > hci.json && python solvepcap.py && rm hci.json
 ```
 ![](./buckeyeCTF2022Capture.png)
 Python code:
