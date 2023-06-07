@@ -57,7 +57,7 @@ print(flag)
 
 ## Solution :
 Obviously there is a problem with the time excecution, so we need to find a way to read the data independantly from the calls and loops.
-After restructuring the program, I was able to find a python library function named Convolve(). 
+After restructuring the program, I was able to find a python function named Convolve() from the numpy library. 
 
 ```py
 #!/usr/bin/env python3
